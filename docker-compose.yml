@@ -1,0 +1,33 @@
+
+version: "2"
+services:
+    db:
+        image: mongo:3.4
+        ports:
+            - 27017:27017
+        networks:
+            - public
+    db_manager:
+        image: mongo-express
+        ports:
+            - 8081:8081
+        networks:
+            - public
+        links:
+            - db:mongo
+    portainer:      
+        image: portainer/portainer
+        ports:
+            - 9000:9000
+        networks:
+            - public
+        volumes:
+            # This might need to be allowed on SELinux: $ setenforce 0
+            - /var/run/docker.sock:/var/run/docker.sock:z
+networks:
+    public:
+        driver: bridge
+        ipam:
+            config:
+            - subnet: 10.10.0.0/16
+              gateway: 10.10.0.1
