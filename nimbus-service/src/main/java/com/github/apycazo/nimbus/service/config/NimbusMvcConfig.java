@@ -1,7 +1,9 @@
 package com.github.apycazo.nimbus.service.config;
 
+import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
+import org.springframework.web.servlet.config.annotation.CorsRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
 
 /**
@@ -16,7 +18,8 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * <li>Header, Extension -> Return whatever is requested by the extension (json | xml)</li>
  * </ul>
  */
-public class ContentManagementConfig extends WebMvcConfigurerAdapter
+@Configuration
+public class NimbusMvcConfig extends WebMvcConfigurerAdapter
 {
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer config)
@@ -31,5 +34,11 @@ public class ContentManagementConfig extends WebMvcConfigurerAdapter
                 // Extensions we allow to use (note that using xml requires dependency on 'jackson-dataformat-xml')
                 .mediaType("xml", MediaType.APPLICATION_XML)
                 .mediaType("json", MediaType.APPLICATION_JSON);
+    }
+
+    @Override
+    public void addCorsMappings(CorsRegistry registry)
+    {
+        registry.addMapping("/").allowedOrigins("*");
     }
 }
