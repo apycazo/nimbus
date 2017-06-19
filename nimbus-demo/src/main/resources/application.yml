@@ -25,8 +25,7 @@ eureka.instance:
     preferIpAddress: true
     statusPageUrlPath: ${server.contextPath:}${management.contextPath}/info
     healthCheckUrlPath: ${server.contextPath:}${management.contextPath}/health
-    metadataMap:
-        servicePath: ${server.contextPath}${nimbus.mapping:/data}
-        instanceId: ${random.uuid}
-    leaseRenewalIntervalInSeconds: 30
-    leaseExpirationDurationInSeconds: 30
+    instanceId: ${spring.application.name}-${random.uuid}
+    metadataMap.servicePath: ${server.contextPath}${nimbus.mapping:/data}
+    leaseRenewalIntervalInSeconds: 15
+    leaseExpirationDurationInSeconds: 15
