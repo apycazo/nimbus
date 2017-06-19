@@ -1,0 +1,25 @@
+# Load this config by default
+spring.application.name: nimbus-central
+spring.profiles: default
+# Server port to listen
+server.port: 8761
+
+# management property (temporary)
+management.contextPath: /admin
+
+#Eureka Specifics
+eureka:
+    environment: deployment
+    datacenter: local
+    server:
+        eviction-interval-timer-in-ms: 5000
+        enableSelfPreservation: false
+    instance:
+        hostname: localhost
+        homePageUrl: ${management.contextPath}/
+        statusPageUrlPath: /${management.contextPath}/info
+        healthCheckUrlPath: /${management.contextPath}/health
+    client:
+        registerWithEureka: false
+        fetchRegistry: false
+        serviceUrl.defaultZone: http://${eureka.instance.hostname:localhost}:${server.port}/eureka/

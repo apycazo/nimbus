@@ -1,0 +1,32 @@
+
+spring.application.name: nimbus-demo
+server.port: 0
+
+# --- Spring actuator context path ---
+management.contextPath: /admin
+
+endpoints:
+    autoconfig.enabled: false
+    beans.enabled: false
+    configprops.enabled: true
+    dump.enabled: false
+    env.enabled: false
+    metrics.enabled: true
+    mappings.enabled: true
+    shutdown.enabled: false
+    trace.enabled: false
+    health:
+        enabled: true
+        sensitive: false
+    info.enabled: true
+
+# --- Eureka instance properties ---
+eureka.instance:
+    preferIpAddress: true
+    statusPageUrlPath: ${server.contextPath:}${management.contextPath}/info
+    healthCheckUrlPath: ${server.contextPath:}${management.contextPath}/health
+    metadataMap:
+        servicePath: ${server.contextPath}${nimbus.mapping:/data}
+        instanceId: ${random.uuid}
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 30
