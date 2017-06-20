@@ -18,8 +18,8 @@ eureka:
     instance:
         hostname: localhost
         homePageUrl: ${management.contextPath:}
-        statusPageUrlPath: ${management.contextPath:}/info
-        healthCheckUrlPath: ${management.contextPath:}/health
+        statusPageUrlPath: ${management.contextPath:/}info
+        healthCheckUrlPath: ${management.contextPath:/}health
     client:
         registerWithEureka: false
         fetchRegistry: true

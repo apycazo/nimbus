@@ -16,6 +16,7 @@ endpoints:
     mappings.enabled: true
     shutdown.enabled: true
     trace.enabled: true
+    loggers.enabled: true
     health:
         enabled: true
         sensitive: false
@@ -24,10 +25,10 @@ endpoints:
 # --- Eureka instance properties ---
 eureka.instance:
     preferIpAddress: true
-    statusPageUrlPath: ${management.contextPath:}/info
-    healthCheckUrlPath: ${management.contextPath:}/health
+    statusPageUrlPath: ${management.contextPath:/}info
+    healthCheckUrlPath: ${management.contextPath:/}health
     # To setup a custom id
     # instanceId: ${spring.application.name}-${random.uuid}
     metadataMap.servicePath: ${nimbus.mapping:/data}
-    leaseRenewalIntervalInSeconds: 15
-    leaseExpirationDurationInSeconds: 15
+    leaseRenewalIntervalInSeconds: 30
+    leaseExpirationDurationInSeconds: 30
