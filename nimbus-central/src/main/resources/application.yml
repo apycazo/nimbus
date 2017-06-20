@@ -5,7 +5,8 @@ spring.profiles: default
 server.port: 8761
 
 # management property (temporary)
-management.contextPath: /admin
+management.contextPath: /
+spring.boot.admin.contextPath: /admin
 
 #Eureka Specifics
 eureka:
@@ -16,10 +17,10 @@ eureka:
         enableSelfPreservation: false
     instance:
         hostname: localhost
-        homePageUrl: ${management.contextPath}/
-        statusPageUrlPath: /${management.contextPath}/info
-        healthCheckUrlPath: /${management.contextPath}/health
+        homePageUrl: ${management.contextPath:}
+        statusPageUrlPath: ${management.contextPath:}/info
+        healthCheckUrlPath: ${management.contextPath:}/health
     client:
         registerWithEureka: false
-        fetchRegistry: false
+        fetchRegistry: true
         serviceUrl.defaultZone: http://${eureka.instance.hostname:localhost}:${server.port}/eureka/

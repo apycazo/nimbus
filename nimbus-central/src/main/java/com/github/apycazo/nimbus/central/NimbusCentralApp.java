@@ -1,10 +1,14 @@
 package com.github.apycazo.nimbus.central;
 
+import de.codecentric.boot.admin.config.EnableAdminServer;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.eureka.server.EnableEurekaServer;
 
+@EnableAdminServer
 @EnableEurekaServer
+@EnableDiscoveryClient
 @SpringBootApplication
 public class NimbusCentralApp
 {
