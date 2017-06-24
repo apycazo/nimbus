@@ -21,3 +21,4 @@ target
 
 /log
 /logs
+*.log

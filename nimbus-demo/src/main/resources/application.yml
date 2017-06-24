@@ -1,26 +1,40 @@
 
 spring.application.name: nimbus-demo
-server.port: 19820
+server:
+    port: 19820
+    tomcat:
+        # logs: /tmp/tomcat.{id}
+        accesslog.enabled: true
+        accesslog.directory: logs
+
+logging.file: logs/${spring.application.name}.log
 
 # --- Spring actuator context path ---
 management.contextPath: /
 management.security.enabled: false
 
-endpoints:
-    autoconfig.enabled: true
-    beans.enabled: true
-    configprops.enabled: true
-    dump.enabled: true
-    env.enabled: true
-    metrics.enabled: true
-    mappings.enabled: true
-    shutdown.enabled: true
-    trace.enabled: true
-    loggers.enabled: true
-    health:
-        enabled: true
-        sensitive: false
-    info.enabled: true
+# --- Actuator cfg ---
+endpoints.enabled: true
+
+info:
+    application: ${spring.application.name}
+    instanceId: ${random.uuid}
+
+#endpoints:
+#    autoconfig.enabled: true
+#    beans.enabled: true
+#    configprops.enabled: true
+#    dump.enabled: true
+#    env.enabled: true
+#    metrics.enabled: true
+#    mappings.enabled: true
+#    shutdown.enabled: true
+#    trace.enabled: true
+#    loggers.enabled: true
+#    health:
+#        enabled: true
+#        sensitive: false
+#    info.enabled: true
 
 # --- Eureka instance properties ---
 eureka.instance:
@@ -32,3 +46,6 @@ eureka.instance:
     metadataMap.servicePath: ${nimbus.mapping:/data}
     leaseRenewalIntervalInSeconds: 30
     leaseExpirationDurationInSeconds: 30
+
+# --- Custom properties ---
+nimbus.demo.randomId: ${random.int(10)}

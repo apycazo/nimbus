@@ -41,7 +41,7 @@ public class RestTemplateConfig
     }
 
     @Bean(BeanNames.REQUEST_FACTORY)
-    private ClientHttpRequestFactory clientHttpRequestFactory()
+    public ClientHttpRequestFactory clientHttpRequestFactory()
     {
         PoolingHttpClientConnectionManager connectionManager = new PoolingHttpClientConnectionManager();
         connectionManager.setMaxTotal(maxTotal);

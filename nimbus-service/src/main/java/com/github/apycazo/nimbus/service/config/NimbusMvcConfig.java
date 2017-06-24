@@ -1,5 +1,6 @@
 package com.github.apycazo.nimbus.service.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
 import org.springframework.web.servlet.config.annotation.ContentNegotiationConfigurer;
@@ -18,6 +19,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter
  * <li>Header, Extension -> Return whatever is requested by the extension (json | xml)</li>
  * </ul>
  */
+@Slf4j
 @Configuration
 public class NimbusMvcConfig extends WebMvcConfigurerAdapter
 {

@@ -5,12 +5,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping
-public class MathRestController
+@RequestMapping("api")
+public class MathRestController implements MathService
 {
     public static final String MAPPING = "math";
 
-    @RequestMapping(value = MAPPING)
+    @Override
     public Integer inc(@PathVariable Integer value)
     {
         return value++;
