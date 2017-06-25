@@ -136,14 +136,10 @@ The modules that will be deployed (tomcat/jetty...). I create the following stru
 ```
 <projectGroup>.<projectName>
 +--- <projectGroup>.<projectName>App: Main class
-|
 +--- cfg: Configuration classes
-|
 +--- api: Keep public api & controllers here
-|
 +--- svc: Shared services
-|
-+--- etc: Others
+\--- etc: Others
 ```
 
 ### Service dependencies
@@ -159,7 +155,7 @@ The modules that will be deployed (tomcat/jetty...). I create the following stru
 
 2. **Spring boot actuator starter**: Production-ready administration endpoints
 
-**NOTE** Many other services, like eureka or cloud config make use of this one.
+**NOTE**: Many other services, like eureka or cloud config make use of this one.
    
 ```xml
 <dependency>
@@ -182,16 +178,18 @@ info:
 3. **Apache HTTP clients**: Replaces java default http services on rest templates.
 
 ```xml
-<!-- HTTP client -->
-<dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpclient</artifactId>
-</dependency>
-<!-- HTTP async client -->
-<dependency>
-    <groupId>org.apache.httpcomponents</groupId>
-    <artifactId>httpasyncclient</artifactId>
-</dependency>
+<dependencies>
+    <!-- HTTP client -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpclient</artifactId>
+    </dependency>
+    <!-- HTTP async client -->
+    <dependency>
+        <groupId>org.apache.httpcomponents</groupId>
+        <artifactId>httpasyncclient</artifactId>
+    </dependency>
+</dependencies>
 ```
 
 4. **Feign**: Declarative rest client
@@ -202,6 +200,21 @@ info:
     <groupId>org.springframework.cloud</groupId>
     <artifactId>spring-cloud-starter-feign</artifactId>
 </dependency>
+```
+
+Note that the service using feign clients must enable them (on the top package):
+```java
+@EnableFeignClients
+@SpringBootApplication
+public class NimbusDemoApp
+{
+    public static void main(String[] args)
+    {
+        new SpringApplicationBuilder(NimbusDemoApp.class)
+                .properties("sun.misc.URLClassPath.disableJarChecking=true")
+                .run(args);
+    }
+}
 ```
 
 5. **Git commit ID**: If you are using git, this will create a git info file (will be used by `spring-actuator`)-
@@ -278,7 +291,7 @@ You will need the following dependencies:
 And enable the client in the configuration:
 
 ```java
-@EnableDiscoveryClient
+@EnableEurekaServer
 @SpringBootApplication
 public class NimbusDemoApp
 {
@@ -321,7 +334,7 @@ You will need the following dependencies:
 And enable the service in the configuration:
 
 ```java
-@EnableEurekaServer
+@EnableDiscoveryClient
 @SpringBootApplication
 public class NimbusCentralApp
 {
@@ -332,7 +345,7 @@ public class NimbusCentralApp
 }
 ```
 
-Configure the server (inside applications properties)
+Configure the client instance (inside applications properties)
 ```yml
 eureka.instance:
     preferIpAddress: true
@@ -356,7 +369,8 @@ service.
 <properties>
     <spring-admin.version>1.5.1</spring-admin.version>
 </properties>
-
+```
+```xml
 <dependencies>
     <dependency>
         <groupId>de.codecentric</groupId>
@@ -401,13 +415,14 @@ from a remote, centralized service.
 
 ### Server
 
-1. Add dependency management for cloud
+1. Add dependency management for spring cloud
 
 ```xml
 <properties>
     <spring-cloud.version>Dalston.SR1</spring-cloud.version>
 </properties>
-
+```
+```xml
 <dependencyManagement>
     <dependencies>
         <dependency>
