@@ -9,11 +9,11 @@ server:
 
 logging.file: logs/${spring.application.name}.log
 
-# --- Spring actuator context path ---
-management.contextPath: /
-management.security.enabled: false
+# --- Spring actuator config ---
+management:
+    contextPath: /
+    security.enabled: false
 
-# --- Actuator cfg ---
 endpoints.enabled: true
 
 info:

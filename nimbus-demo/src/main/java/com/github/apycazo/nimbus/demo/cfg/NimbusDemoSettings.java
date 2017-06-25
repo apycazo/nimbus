@@ -10,4 +10,5 @@ import org.springframework.context.annotation.Configuration;
 public class NimbusDemoSettings
 {
     private Integer randomId = 0;
+    private String cloudId = "local";
 }

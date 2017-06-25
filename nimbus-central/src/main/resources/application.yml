@@ -8,19 +8,19 @@ server.port: 8761
 management.contextPath: /
 spring.boot.admin.contextPath: /admin
 
+# Cloud config
+spring.cloud.config.server.git.uri: classpath:/config
+spring.cloud.config.server.prefix: cloud
+spring.profiles.active: native
+
 #Eureka Specifics
 eureka:
     environment: deployment
     datacenter: local
     server:
         eviction-interval-timer-in-ms: 5000
+        # for single node only
         enableSelfPreservation: false
-    instance:
-        hostname: localhost
-        homePageUrl: ${management.contextPath:}
-        statusPageUrlPath: ${management.contextPath:/}info
-        healthCheckUrlPath: ${management.contextPath:/}health
     client:
         registerWithEureka: false
-        fetchRegistry: true
         serviceUrl.defaultZone: http://${eureka.instance.hostname:localhost}:${server.port}/eureka/

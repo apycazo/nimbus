@@ -24,6 +24,7 @@
     </modules>
 
     <properties>
+        <spring-cloud.version>Dalston.SR1</spring-cloud.version>
         <java.version>1.8</java.version>
 		<netflix.version>1.3.1.RELEASE</netflix.version>
         <git-commit.version>2.2.2</git-commit.version>
@@ -37,6 +38,13 @@
                 <groupId>org.springframework.cloud</groupId>
                 <artifactId>spring-cloud-netflix</artifactId>
                 <version>${netflix.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud.version}</version>
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>

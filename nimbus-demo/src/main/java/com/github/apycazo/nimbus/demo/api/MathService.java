@@ -6,8 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 public interface MathService
 {
-    String MAPPING = "math";
+    String MAPPING = "api/math";
 
-    @RequestMapping(value = MAPPING)
+    @RequestMapping(value = MAPPING + "/{value}")
     Integer inc(@PathVariable(value = "value") Integer value);
 }

@@ -1,0 +1,8 @@
+spring:
+    application.name: nimbus-demo
+    profiles.active: defaults
+    cloud.config:
+        uri: http://localhost:8761/cloud
+        username: root
+        password: s3cr3t
+        server.prefix: cloud

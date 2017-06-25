@@ -1,12 +1,11 @@
 package com.github.apycazo.nimbus.service.config;
 
 import feign.Logger;
-import org.springframework.cloud.netflix.feign.EnableFeignClients;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@EnableFeignClients
+//@EnableFeignClients
 public class FeignClientConfig
 {
     /**
