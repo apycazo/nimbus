@@ -9,4 +9,13 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan
 public class NimbusServiceConfig
 {
+    /**
+     * Sleuth sampler
+     * @return Always create a sample
+     */
+//    @Lazy
+//    @Bean
+//    public AlwaysSampler defaultSampler() {
+//        return new AlwaysSampler();
+//    }
 }

@@ -49,3 +49,6 @@ eureka.instance:
 
 # --- Custom properties ---
 nimbus.demo.randomId: ${random.int(10)}
+
+# Sleuth tracing: 0.0..1.0
+spring.sleuth.sampler.percentage: 1.0
